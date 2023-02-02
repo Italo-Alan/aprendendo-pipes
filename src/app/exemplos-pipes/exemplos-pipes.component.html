@@ -1,1 +1,50 @@
-<p>exemplos-pipes works!</p>
+<!-- O pipe ele transforma um valor e nós podemos mostrar esse valor transformado dentro de um template.-->
+<h3>Exemplos de Pipes</h3>
+
+<p>Título: {{ book.title |  uppercase |  camelCase}}</p>
+<!-- Pipe aninhado -->
+<p>Título: {{ book.title |  uppercase | lowercase}}</p>
+<p>Estrelas: {{ book.rating | number:'1.1-4' }}</p>
+<p>Páginas: {{ book.pages | number }}</p>
+<p>Preço: {{ book.price | currency }}</p>
+<p>Preço: {{ book.price * 5.09 | currency:'BRL' }}</p>
+<p>Data de Lançamento: {{ book.releaseData }}</p>
+<p>Data de Lançamento: {{ book.releaseData | date }}</p>
+<p>Data de Lançamento: {{ book.releaseData | date: 'dd-MM-yyyy' }}</p>
+<p>Data de Lançamento: {{ book.releaseData | date: 'dd-MMM-yyyy' }}</p>
+<p>Url: {{ book.url }}</p>
+<br>
+<p>Livro: {{ book | json}}</p>
+
+<h4>Adicionar curso</h4>
+<input type="text" #novoValor>
+<button (click)="addCurso(novoValor.value)">Add Curso</button>
+<br><br>
+<h4>Pesquisar curso</h4>
+<input type="text" [(ngModel)]="filtro">
+<h3>Pipe puro</h3>
+<ul>
+  <li *ngFor="let livro of books | filtroArray:filtro">
+    {{ livro }}
+  </li>
+</ul>
+<br><br>
+<h3>Pipe impuro</h3>
+<ul>
+  <li *ngFor="let livro of books | filtroArrayImpuro:filtro">
+    {{ livro }}
+  </li>
+</ul>
+
+<br><br>
+<h1>IMPORTANTE: Maneira correta de usar filtro nos projetos</h1>
+<ul>
+  <li *ngFor="let livro of obterCursos()">
+    {{ livro }}
+  </li>
+</ul>
+
+<br><br>
+<p> {{ asyncValue | async}}</p>
+<p> {{ asyncValue2 | async}}</p>
+
